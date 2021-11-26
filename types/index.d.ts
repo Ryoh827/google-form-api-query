@@ -1,17 +1,17 @@
 declare module GoogleFormAPI {
   export type Form = {
     formId?: string;
-    info?: Info;
+    info: Info;
     settings?: {
       FormSettings;
     };
-    items?: Array<Item>;
+    items: Array<Item>;
     revisionId?: string;
     responderUri?: string;
   };
 
   export type Info = {
-    title?: string;
+    title: string;
     documentTitle?: string;
     description?: string;
   };
@@ -38,7 +38,7 @@ declare module GoogleFormAPI {
   };
 
   export type QuestionItem = {
-    question?: Question;
+    question: Question;
     image?: Image;
   };
 
@@ -57,8 +57,8 @@ declare module GoogleFormAPI {
   };
 
   export type ChoiceQuestion = {
-    type?: ChoiceType;
-    options?: Array<Option>;
+    type: ChoiceType;
+    options: Array<Option>;
     shuffle?: boolean;
   };
 
@@ -69,7 +69,7 @@ declare module GoogleFormAPI {
     | 'DROP_DOWN';
 
   export type Option = {
-    value?: string;
+    value: string;
     image?: Image;
     isOther?: boolean;
 
@@ -101,8 +101,8 @@ declare module GoogleFormAPI {
   };
 
   export type ScaleQuestion = {
-    low?: number;
-    high?: number;
+    low: number;
+    high: number;
     lowLabel?: string;
     highLabel?: string;
   };
@@ -117,7 +117,7 @@ declare module GoogleFormAPI {
   };
 
   export type FileUploadQuestion = {
-    folderId?: string;
+    folderId: string;
     types?: Array<FileType>;
     maxFiles?: number;
     maxFileSize?: string;
@@ -136,12 +136,12 @@ declare module GoogleFormAPI {
     | 'AUDIO';
 
   export type RowQuestion = {
-    title?: string;
+    title: string;
   };
 
   export type Grading = {
-    pointValue?: integer;
-    correctAnswers?: CorrectAnswers;
+    pointValue: integer;
+    correctAnswers: CorrectAnswers;
     whenRight?: Feedback;
     whenWrong?: Feedback;
     generalFeedback?: Feedback;
@@ -152,17 +152,17 @@ declare module GoogleFormAPI {
   };
 
   export type CorrectAnswer = {
-    value?: string;
+    value: string;
   };
 
   export type QuestionGroupItem = {
-    questions?: Array<Question>;
+    questions: Array<Question>;
     image?: Image;
     grid?: Grid;
   };
 
   export type Grid = {
-    columns?: ChoiceQuestion;
+    columns: ChoiceQuestion;
     shuffleQuestions?: boolean;
   };
 
@@ -171,16 +171,16 @@ declare module GoogleFormAPI {
   export type TextItem = {};
 
   export type ImageItem = {
-    image?: Image;
+    image: Image;
   };
 
   export type VideoItem = {
-    video?: Video;
+    video: Video;
     caption?: string;
   };
 
   export type Video = {
-    youtubeUri?: string;
+    youtubeUri: string;
     properties?: MediaProperties;
   };
 
