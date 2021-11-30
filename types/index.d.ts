@@ -1,4 +1,13 @@
 declare module GoogleFormAPI {
+  type RequireOne<T, K extends keyof T = keyof T> = K extends keyof T
+    ? PartialRequire<T, K>
+    : never;
+
+  type PartialRequire<O, K extends keyof O> = {
+    [P in K]-?: O[P];
+  } &
+    O;
+
   export type Form = {
     formId?: string;
     info: Info;
@@ -24,37 +33,56 @@ declare module GoogleFormAPI {
     isQuiz?: boolean;
   };
 
-  export type Item = {
-    itemId?: string;
-    title?: string;
-    description?: string;
+  export type Item = RequireOne<
+    {
+      itemId?: string;
+      title?: string;
+      description?: string;
 
-    questionItem?: QuestionItem;
-    questionGroupItem?: QuestionGroupItem;
-    pageBreakItem?: PageBreakItem;
-    textItem?: TextItem;
-    imageItem?: ImageItem;
-    videoItem?: VideoItem;
-  };
+      questionItem?: QuestionItem;
+      questionGroupItem?: QuestionGroupItem;
+      pageBreakItem?: PageBreakItem;
+      textItem?: TextItem;
+      imageItem?: ImageItem;
+      videoItem?: VideoItem;
+    },
+    | 'questionItem'
+    | 'questionGroupItem'
+    | 'pageBreakItem'
+    | 'textItem'
+    | 'imageItem'
+    | 'videoItem'
+  >;
+
+  export type ItemQuestion = {};
 
   export type QuestionItem = {
     question: Question;
     image?: Image;
   };
 
-  export type Question = {
-    questionId?: string;
-    required?: boolean;
-    grading?: Grading;
+  export type Question = RequireOne<
+    {
+      questionId?: string;
+      required?: boolean;
+      grading?: Grading;
 
-    choiceQuestion?: ChoiceQuestion;
-    textQuestion?: TextQuestion;
-    scaleQuestion?: ScaleQuestion;
-    dateQuestion?: DateQuestion;
-    timeQuestion?: TimeQuestion;
-    fileUploadQuestion?: FileUploadQuestion;
-    rowQuestion?: RowQuestion;
-  };
+      choiceQuestion?: ChoiceQuestion;
+      textQuestion?: TextQuestion;
+      scaleQuestion?: ScaleQuestion;
+      dateQuestion?: DateQuestion;
+      timeQuestion?: TimeQuestion;
+      fileUploadQuestion?: FileUploadQuestion;
+      rowQuestion?: RowQuestion;
+    },
+    | 'choiceQuestion'
+    | 'textQuestion'
+    | 'scaleQuestion'
+    | 'dateQuestion'
+    | 'timeQuestion'
+    | 'fileUploadQuestion'
+    | 'rowQuestion'
+  >;
 
   export type ChoiceQuestion = {
     type: ChoiceType;
@@ -68,14 +96,17 @@ declare module GoogleFormAPI {
     | 'CHECKBOX'
     | 'DROP_DOWN';
 
-  export type Option = {
-    value: string;
-    image?: Image;
-    isOther?: boolean;
+  export type Option = RequireOne<
+    {
+      value: string;
+      image?: Image;
+      isOther?: boolean;
 
-    goToAction?: GoToAction;
-    goToSectionId?: string;
-  };
+      goToAction?: GoToAction;
+      goToSectionId?: string;
+    },
+    'goToAction' | 'goToSectionId'
+  >;
 
   export type GoToAction =
     | 'GO_TO_ACTION_UNSPECIFIED'
