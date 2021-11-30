@@ -234,4 +234,54 @@ declare module GoogleFormAPI {
     displayText: string;
     youtubeUri?: string;
   };
+
+  export type RequestBody = {
+    includeFormInResponse?: boolean;
+    requests: Array<Request>;
+    writeControl?: WriteControl;
+  };
+
+  export type WriteControl = RequireOne<{
+    requiredRevisionId?: string;
+    targetRevisionId?: string;
+  }>;
+
+  export type Request = RequireOne<{
+    updateFormInfo?: UpdateFormInfoRequest;
+    updateSettings?: UpdateSettingsRequest;
+    createItem?: CreateItemRequest;
+    moveItem?: MoveItemRequest;
+    deleteItem?: DeleteItemRequest;
+    updateItem?: UpdateItemRequest;
+  }>;
+
+  export type UpdateFormInfoRequest = {
+    info?: Info;
+    updateMask: string;
+  };
+
+  export type UpdateSettingsRequest = {
+    settings: FormSettings;
+    updateMask: string;
+  };
+
+  export type CreateItemRequest = {
+    item: Item;
+    location: Location;
+  };
+
+  export type MoveItemRequest = {
+    originalLocation: Location;
+    newLocation: Location;
+  };
+
+  export type DeleteItemRequest = {
+    location: Location;
+  };
+
+  export type UpdateItemRequest = {
+    item: Item;
+    location: Location;
+    updateMask: string;
+  };
 }
