@@ -1,4 +1,4 @@
-declare module GoogleFormAPI {
+declare namespace GoogleFormAPI {
   type RequireOne<T, K extends keyof T = keyof T> = K extends keyof T
     ? PartialRequire<T, K>
     : never;

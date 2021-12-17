@@ -1,6 +1,6 @@
-import '../types/index.d.ts';
+import '../types/index';
 
-(async () => {
+(() => {
   const form: GoogleFormAPI.Form = {
     info: {
       title: 'title',
