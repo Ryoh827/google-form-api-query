@@ -1,4 +1,4 @@
-declare namespace GoogleFormAPI {
+export declare namespace GoogleFormAPI {
   type RequireOne<T, K extends keyof T = keyof T> = K extends keyof T
     ? PartialRequire<T, K>
     : never;
@@ -96,17 +96,14 @@ declare namespace GoogleFormAPI {
     | 'CHECKBOX'
     | 'DROP_DOWN';
 
-  export type Option = RequireOne<
-    {
-      value: string;
-      image?: Image;
-      isOther?: boolean;
+  export type Option = {
+    value: string;
+    image?: Image;
+    isOther?: boolean;
 
-      goToAction?: GoToAction;
-      goToSectionId?: string;
-    },
-    'goToAction' | 'goToSectionId'
-  >;
+    goToAction?: GoToAction;
+    goToSectionId?: string;
+  };
 
   export type GoToAction =
     | 'GO_TO_ACTION_UNSPECIFIED'
@@ -283,5 +280,9 @@ declare namespace GoogleFormAPI {
     item: Item;
     location: Location;
     updateMask: string;
+  };
+
+  export type Location = {
+    index: number;
   };
 }
